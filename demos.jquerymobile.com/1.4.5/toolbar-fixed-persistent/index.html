@@ -67,13 +67,19 @@
           <input type="password" name="passw" id="pswd" placeholder="Password">
           <label for="log">Keep me logged in</label>
           <input type="checkbox" name="login" id="log" value="1" data-mini="true">
-          <input type="submit" data-inline="true" value="Log in">
+          <input type="submit" data-inline="true" value="Log in" id="btnlogin">
         </div>
       </form>
     </div>
 		</div><!-- /content -->
 
 	</div><!-- /page -->
+    <script>
+$("#btnlogin").click(function(e){
+    e.preventDefault();
+    location.href = "page-c.html"
+});
+    </script>
 </body>
 
 <!-- Mirrored from demos.jquerymobile.com/1.4.5/toolbar-fixed-persistent/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Jun 2017 01:40:53 GMT -->
