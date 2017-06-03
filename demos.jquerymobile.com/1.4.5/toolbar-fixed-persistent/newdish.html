@@ -52,8 +52,21 @@
  }
 
  #ingredients_tagsinput {
-     width: 330px !important;
+     width: 330px;
  }
+
+#hostlocation {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        margin-left: 12px;
+        padding: 2px !important;
+        text-overflow: ellipsis;
+        width: 100% !important;
+        top: -1px !important;
+        left: -15px !important;
+      }
+ 
 </style>
 </head>
 <body>
@@ -85,12 +98,12 @@
                 <input type="datetime-local" name="date" id="date" value="">
 
                 <label for="host location">Host Location</label>
-                <input type="search" name="hostlocation" id="hostlocation">
+                <input type="text" name="hostlocation" id="hostlocation" class="controls" placholder="Enter a location">
 
                 <div id="map"></div>
 
 
-                <input type="submit" value="Submit"/>
+                <input type="submit" value="Post"/>
             </form>
 
 		</div><!-- /content -->
@@ -114,5 +127,91 @@ $('#ingredients').tagsInput({
     defaultText: 'ingredient'
 });
     </script>
+
+    <script>
+
+
+function initAutocomplete() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+                  center: {lat: -33.8688, lng: 151.2195},
+                  zoom: 13,
+                  mapTypeId: 'roadmap',
+                  disableDefaultUI: true
+                
+    });
+
+            // Create the search box and link it to the UI element.
+            var input = document.getElementById('hostlocation');
+            var searchBox = new google.maps.places.SearchBox(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            // Bias the SearchBox results towards current map's viewport.
+    map.addListener('bounds_changed', function() {
+                  searchBox.setBounds(map.getBounds());
+                
+    });
+
+            var markers = [];
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+    searchBox.addListener('places_changed', function() {
+                  var places = searchBox.getPlaces();
+
+        if (places.length == 0) {
+                        return;
+                      
+        }
+
+                  // Clear out the old markers.
+        markers.forEach(function(marker) {
+                        marker.setMap(null);
+                      
+        });
+                  markers = [];
+
+                  // For each place, get the icon, name and location.
+                  var bounds = new google.maps.LatLngBounds();
+        places.forEach(function(place) {
+            if (!place.geometry) {
+                              console.log("Returned place contains no geometry");
+                              return;
+                            
+            }
+            var icon = {
+                              url: place.icon,
+                              size: new google.maps.Size(71, 71),
+                              origin: new google.maps.Point(0, 0),
+                              anchor: new google.maps.Point(17, 34),
+                              scaledSize: new google.maps.Size(25, 25)
+                            
+            };
+
+                        // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+                              map: map,
+                              icon: icon,
+                              title: place.name,
+                              position: place.geometry.location
+                            
+            }));
+
+            if (place.geometry.viewport) {
+                              // Only geocodes have viewport.
+                              bounds.union(place.geometry.viewport);
+                            
+            } else {
+                              bounds.extend(place.geometry.location);
+                            
+            }
+                      
+        });
+                  map.fitBounds(bounds);
+                
+    });
+          
+}
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3qvUIv0MfndpKiaFME1_YBJy5zs7-4n4&libraries=places&callback=initAutocomplete"
+         async defer></script>
 </body>
 </html>
