@@ -87,3 +87,13 @@ function initAutocomplete() {
 
 }
 //google map
+//
+
+//post dish button
+
+$("#btnpostdish").click(function(e){
+    e.preventDefault();
+    var formdata = $("#newdish").serialize();
+    console.log(formdata);
+    //send data to server
+});
