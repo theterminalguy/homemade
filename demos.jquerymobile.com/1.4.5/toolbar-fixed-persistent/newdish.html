@@ -55,18 +55,12 @@
      width: 330px;
  }
 
-#hostlocation {
-        background-color: #fff;
-        font-family: Roboto;
-        font-size: 15px;
-        margin-left: 12px;
-        padding: 2px !important;
-        text-overflow: ellipsis;
-        width: 100% !important;
-        top: -1px !important;
-        left: -15px !important;
-      }
- 
+ #imgpreview {
+     margin-left: 20%;
+     border-radius: 2px;
+     border: 2px solid lightgrey;
+     height: 150px;
+ }
 </style>
 </head>
 <body>
@@ -83,6 +77,8 @@
                 <input type="text" name="dishname" id="dishname">
 
                 <label for="Dish Image">Dish Image</label>
+                <img src="rice.jpg" id="imgpreview"/>
+
                 <input type="file" name="file" id="file" value="">
 
                 <label for="serving capacity">Serving Capacity</label>
