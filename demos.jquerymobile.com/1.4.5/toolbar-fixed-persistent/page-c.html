@@ -15,9 +15,47 @@
 	<script src="http://demos.jquerymobile.com/1.4.5/_assets/js/index.js"></script>
 	<script src="http://demos.jquerymobile.com/1.4.5/js/jquery.mobile-1.4.5.min.js"></script>
 	<script>
+		function generateString(object){
+				var str = "				<li class=\"ui-li-has-alt ui-li-has-thumb ui-last-child\"><a href=\"#\" class=\"ui-btn ui-btn-icon-right ui-icon-carat-r \"style=\"margin-right:0px;\"\"><img style=\"height:80px; margin-top: 20px;margin-left: 5px;\" src=\"";
+				str += object["img"];
+				str += "\">";
+				str += "<h2>";
+				str += object["name"];
+				str += "</h2>";
+				str += "<div style=\"display:flex; flex-direction:row;\"><p style=\"flex:1.6; margin-bottom:0;\">"
+				str += object["date"];
+				str += "</p>";
+				str += "<p style=\"flex:0.4;  margin-bottom:0;\"><b>"
+				str += object["price"];
+				str += "</b></p></div>";
+				str += "<p style=\"margin-top:0; margin-bottom:0;\">";
+				str += object["time"];
+				str += "</p>";
+				str += "<p style=\"margin-top:0;\">by <b>";
+				str += object["host"];
+				str += "</b></p>";
+				str += "</a></li>"
+				return str;
+		}
 		$(function() {
 			$( "[data-role='navbar']" ).navbar();
 			$( "[data-role='header'], [data-role='footer']" ).toolbar();
+			var data = [{name:"Pad Thai", date:"12/10",time:"11pm",host:"Bruce Wayne", price:"$40",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg/1200px-Phat_Thai_kung_Chang_Khien_street_stall.jpg"}];
+			var mystring = generateString(data[0]);
+			// $("#mylist").append("				<li class=\"ui-li-has-alt ui-li-has-thumb ui-last-child\"><a href=\"#\" class=\"ui-btn ui-btn-icon-right ui-icon-carat-r\">\
+			// 					<img style=\"height:80px;\" src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg/1200px-Phat_Thai_kung_Chang_Khien_street_stall.jpg\">\
+			// 				<h2>Pad Thai</h2>\
+			// 				<div style=\"display:flex; flex-direction:row;\">\
+			// 					<p style=\"flex:1.6; margin-bottom:0;\">Date: 12/10</p>\
+			// 					<p style=\"flex:0.4;  margin-bottom:0;\"><b>$40</b></p>\
+			// 				</div>\
+			// 				<p style=\"margin-top:0; margin-bottom:0;\">Time: 11pm</p>\
+			// 				<p style=\"margin-top:0;\">by <b>Bruce Wayne</b></p>\
+			// 			</a>\
+			// 				</li>");
+			$("#mylist").append(mystring);
+				$("#mydiv").hide().fadeIn('fast');
+			// console.log("!@!")
 		});
 		// Update the contents of the toolbars
 		$( document ).on( "pagecontainerchange", function() {
@@ -36,12 +74,7 @@
 				}
 			});
 		});
-		var data = [{name:"Pad Thai", date:"12/10",time:"11pm",host:"Bruce Wayne", price:"$40",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg/1200px-Phat_Thai_kung_Chang_Khien_street_stall.jpg"}];
-		$("#mylist").append("				<li><a href=\"#\"> \
-							<img src=\"http://demos.jquerymobile.com/1.4.5/_assets/img/album-hc.jpg\">\
-						<h2>Warning</h2>\
-						<p>Hot Chip</p></a>\
-						</li>");
+
 
 	</script>
 </head>
@@ -53,10 +86,10 @@
 
 <div data-role="page" data-title="Food List">
 
-    <div class="ui-content" role="main">
+    <div class="ui-content" role="main" id="mydiv">
 
 			<ul data-role="listview"  data-filter="true" data-filter-theme="a" data-filter-placeholder="Search foods..." id="mylist">
-				<li><a href="#">
+				<!-- <li><a href="#">
 					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg/1200px-Phat_Thai_kung_Chang_Khien_street_stall.jpg">
 				<h2>Pad Thai</h2>
 				<div style="display:flex; flex-direction:row;">
@@ -70,7 +103,7 @@
 				<li><a href="#">
 					<img src="http://demos.jquerymobile.com/1.4.5/_assets/img/album-hc.jpg">
 				<h2>Warning</h2>
-				<p>Hot Chip</p></a>
+				<p id="test">Hot Chip</p></a>
 				</li>
 				<li><a href="#">
 					<img src="http://demos.jquerymobile.com/1.4.5/_assets/img/album-p.jpg">
@@ -122,7 +155,7 @@
 					<h3>The Suburbs</h3>
 				<p>Arcade Fire</p>
 					<a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
-				</a></li>
+				</a></li> -->
 			</ul>
 
 			<div data-role="popup" id="purchase" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
