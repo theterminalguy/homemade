@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Persistent toolbars - jQuery Mobile Demos</title>
+	<title>Homeade - Dishes</title>
 	<link rel="shortcut icon" href="http://demos.jquerymobile.com/1.4.5/favicon.ico">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="http://demos.jquerymobile.com/1.4.5/css/themes/default/jquery.mobile-1.4.5.min.css">
@@ -23,14 +23,12 @@
 				str += object["name"];
 				str += "</h2>";
 				str += "<div style=\"display:flex; flex-direction:row;\"><p style=\"flex:1.6; margin-bottom:0;\">"
-				str += object["date"];
+         str += "420E 90th Street | view map<br/>";
+				str += object["date"] + " | " + object["time"];
 				str += "</p>";
 				str += "<p style=\"flex:0.4;  margin-bottom:0;\"><b>"
 				str += object["price"];
-				str += "</b></p></div>";
-				str += "<p style=\"margin-top:0; margin-bottom:0;\">";
-				str += object["time"];
-				str += "</p>";
+                str += "</b><br/><small>4 of 5</small></p></div>";
 				str += "<p style=\"margin-top:0;\">by <b>";
 				str += object["host"];
 				str += "</b></p>";
@@ -111,15 +109,15 @@
 </head>
 <body>
     <div data-role="header" data-position="fixed" data-theme="a">
-		<a href="http://demos.jquerymobile.com/1.4.5/toolbar/" data-rel="back" class="hamburger">Back</a>
+		<a href="http://demos.jquerymobile.com/1.4.5/toolbar/" data-rel="back" class="ui-btn ui-btn-left ui-alt-icon ui-nodisc-icon ui-corner-all ui-btn-icon-notext ui-icon-carat-l">Back</a>
         <h1>Albums</h1>
     </div><!-- /header -->
 
-<div data-role="page" data-title="Food List" id="food">
+<div data-role="page" data-title="Dashboard" id="food">
 
     <div class="ui-content" role="main" id="mydiv">
 
-			<ul data-role="listview"  data-filter="true" data-filter-theme="a" data-filter-placeholder="Search foods..." id="mylist">
+			<ul data-role="listview"  data-filter="true" data-filter-theme="a" data-filter-placeholder="Search dishes..." id="mylist">
 				<!-- <li><a href="#">
 					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg/1200px-Phat_Thai_kung_Chang_Khien_street_stall.jpg">
 				<h2>Pad Thai</h2>
@@ -203,10 +201,10 @@
 	<div data-role="footer" data-position="fixed" data-theme="a">
 		<div data-role="navbar">
 			<ul>
-				<li><a href="index-2.html" data-prefetch="true" data-transition="fade">Info</a></li>
-				<li><a href="page-b.html" data-prefetch="true" data-transition="flip">Friends</a></li>
-				<li><a href="page-c.html" data-prefetch="true" data-transition="turn">Albums</a></li>
-				<li><a href="page-d.html" data-prefetch="true" data-transition="slide">Emails</a></li>
+				<li><a href="dashboard.html" data-prefetch="true" data-transition="fade">Dashboard</a></li>
+				<li><a href="newdish.html" data-prefetch="true" data-transition="flip">New Dish</a></li>
+				<li><a href="page-c.html" data-prefetch="true" data-transition="turn">Settings</a></li>
+				<li><a href="page-d.html" data-prefetch="true" data-transition="slide">Logout</a></li>
 			</ul>
 		</div><!-- /navbar -->
 	</div><!-- /footer -->
