@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	
+
 <!-- Mirrored from demos.jquerymobile.com/1.4.5/toolbar-fixed-persistent/page-c.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Jun 2017 01:40:53 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
@@ -36,54 +36,61 @@
 				}
 			});
 		});
+		var data = [{name:"Pad Thai", date:"12/10",time:"11pm",host:"Bruce Wayne", price:"$40",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg/1200px-Phat_Thai_kung_Chang_Khien_street_stall.jpg"}];
+		$("#mylist").append("				<li><a href=\"#\"> \
+							<img src=\"http://demos.jquerymobile.com/1.4.5/_assets/img/album-hc.jpg\">\
+						<h2>Warning</h2>\
+						<p>Hot Chip</p></a>\
+						</li>");
+
 	</script>
 </head>
 <body>
     <div data-role="header" data-position="fixed" data-theme="a">
-		<a href="http://demos.jquerymobile.com/1.4.5/toolbar/" data-rel="back" class="ui-btn ui-btn-left ui-alt-icon ui-nodisc-icon ui-corner-all ui-btn-icon-notext ui-icon-carat-l">Back</a>
+		<a href="http://demos.jquerymobile.com/1.4.5/toolbar/" data-rel="back" class="hamburger">Back</a>
         <h1>Albums</h1>
     </div><!-- /header -->
 
-<div data-role="page" data-title="Albums">
+<div data-role="page" data-title="Food List">
 
     <div class="ui-content" role="main">
 
-			<ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="false">
+			<ul data-role="listview"  data-filter="true" data-filter-theme="a" data-filter-placeholder="Search foods..." id="mylist">
 				<li><a href="#">
-					<img src="http://demos.jquerymobile.com/1.4.5/_assets/img/album-bb.jpg">
-				<h2>Broken Bells</h2>
-				<p>Broken Bells</p></a>
-					<a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
+					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg/1200px-Phat_Thai_kung_Chang_Khien_street_stall.jpg">
+				<h2>Pad Thai</h2>
+				<div style="display:flex; flex-direction:row;">
+					<p style="flex:1.6; margin-bottom:0;">Date: 12/10</p>
+					<p style="flex:0.4;  margin-bottom:0;"><b>$40</b></p>
+				</div>
+				<p style="margin-top:0; margin-bottom:0;">Time: 11pm</p>
+				<p style="margin-top:0;">by <b>Bruce Wayne</b></p>
+			</a>
 				</li>
 				<li><a href="#">
 					<img src="http://demos.jquerymobile.com/1.4.5/_assets/img/album-hc.jpg">
 				<h2>Warning</h2>
 				<p>Hot Chip</p></a>
-					<a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
 				</li>
 				<li><a href="#">
 					<img src="http://demos.jquerymobile.com/1.4.5/_assets/img/album-p.jpg">
 				<h2>Wolfgang Amadeus Phoenix</h2>
 				<p>Phoenix</p></a>
-					<a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
 				</li>
 				<li><a href="#">
 					<img src="http://demos.jquerymobile.com/1.4.5/_assets/img/album-ok.jpg">
 					<h3>Of The Blue Colour Of The Sky</h3>
 				<p>Ok Go</p>
-					<a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
 				</a></li>
 				<li><a href="#">
 					<img src="http://demos.jquerymobile.com/1.4.5/_assets/img/album-ws.jpg">
 					<h3>Elephant</h3>
 				<p>The White Stripes</p>
-					<a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
 				</a></li>
 				<li><a href="#">
 					<img src="http://demos.jquerymobile.com/1.4.5/_assets/img/album-rh.jpg">
 					<h3>Kid A</h3>
 				<p>Radiohead</p>
-					<a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
 				</a></li>
 				<li><a href="#">
 					<img src="http://demos.jquerymobile.com/1.4.5/_assets/img/album-xx.jpg">
