@@ -1,0 +1,13 @@
+HTTrack3.48-21 launched on Fri, 02 Jun 2017 21:40:51 at http://demos.jquerymobile.com/1.4.5/toolbar-fixed-persistent/
+(httrack http://demos.jquerymobile.com/1.4.5/toolbar-fixed-persistent/ )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+21:40:52	Warning: 	Moved Temporarily for demos.jquerymobile.com/robots.txt
+21:40:52	Warning: 	File has moved from demos.jquerymobile.com/robots.txt to 1.4.5
+
+HTTrack Website Copier/3.48-21 mirror complete in 2 seconds : 6 links scanned, 5 files written (24064 bytes overall) [10523 bytes received at 5261 bytes/sec], 24064 bytes transferred using HTTP compression in 5 files, ratio 35%, 3.0 requests per connection
+(No errors, 2 warnings, 0 messages)

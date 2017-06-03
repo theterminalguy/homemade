@@ -1,0 +1,4 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+.jquerymobile.com	TRUE	/	FALSE	1999999999	__cfduid	d3dfbb476e5444898e6b9ddc1c5c860401496454051
+
