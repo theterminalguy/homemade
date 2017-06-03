@@ -45,7 +45,8 @@
 			  ],
 			  "location": "Kimmel",
 			  "currentNum": 3,
-			  "maxNum": 10
+			  "maxNum": 10,
+				"id": "d479cb856b934c055c8197db166566fd" // TO BE REPLACED
 			};
 			var name = food.name;
 			var host = food.host;
@@ -117,6 +118,15 @@
 
 			    }
 			});
+			$("#supportDish").click(function(){
+				var myObj = {  "currentNum": currentNum +1 };
+				var id = food.id;
+				console.log(myObj)
+				console.log(id)
+				$.post("https://homemade.mybluemix.net/api/Dishes/update?where=%7B%22id%22%3A%20%22"+id+"%22%7D", myObj).done(function(data){
+					console.log("posted");
+				});
+			})
 		});
 
 		// Update the contents of the toolbars
@@ -183,6 +193,8 @@
 					</div>
 				</div>
 			</center>
+			<button style="color:green;" id="supportDish">Back this Dish!
+			</button>
 		</div>
 
 		<h1 id="info"></h1>
