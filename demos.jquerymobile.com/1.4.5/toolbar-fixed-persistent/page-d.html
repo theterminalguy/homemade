@@ -34,7 +34,7 @@
 			$( "[data-role='header'], [data-role='footer']" ).toolbar();
 			// food page
 				var food =  {
-			  "name": "Pad Thai",
+			  "name": "Green Curry",
 			  "host": "Matteo",
 			  "price": 10000,
 			  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg/1200px-Phat_Thai_kung_Chang_Khien_street_stall.jpg",
@@ -68,24 +68,55 @@
 
 			$("#ingredients").append(myIngredients);
 
-// 			$.get('https://1a6b81a5-6f50-4b65-8428-789819ea70d3:t1WDv4Uuvrvh@gateway.watsonplatform.net/discovery/api/v1/environments/cbd7065e-8e38-4ea6-9bc5-0f71bdd5a3bc/collections/1bce84dc-a68a-44dc-8799-7f2f85f82b9b/query?version=2016-11-07&query=&count=&offset=&aggregation=&filter=&passages=false&highlight=true&return=',{
-//   "count": 5,
-//   "return": "title,enrichedTitle.text,url,host,blekko.chrondate",
-//   "query": "\"green curry\",language:english",
-//   "aggregations": [
-//     "nested(enrichedTitle.entities).filter(enrichedTitle.entities.type:Company).term(enrichedTitle.entities.text)",
-//     "nested(enrichedTitle.entities).filter(enrichedTitle.entities.type:Person).term(enrichedTitle.entities.text)",
-//     "term(enrichedTitle.concepts.text)",
-//     "term(blekko.basedomain).term(docSentiment.type)",
-//     "term(docSentiment.type)",
-//     "min(docSentiment.score)",
-//     "max(docSentiment.score)",
-//     "filter(enrichedTitle.entities.type::Company).term(enrichedTitle.entities.text).timeslice(blekko.chrondate,1day).term(docSentiment.type)"
-//   ],
-//   "filter": "blekko.hostrank>20,blekko.chrondate>1491192000,blekko.chrondate<1496462400"
-// },function(data){
-// 				console.log(data);
-// 			});
+			// $.get('https://gateway.watsonplatform.net/discovery/api/v1/environments/cbd7065e-8e38-4ea6-9bc5-0f71bdd5a3bc/collections/1bce84dc-a68a-44dc-8799-7f2f85f82b9b/query?version=2016-11-07&query=&count=&offset=&aggregation=&filter=&passages=false&highlight=true&return=',function(data){
+			// 	console.log(data);
+			// });
+			var username = "1a6b81a5-6f50-4b65-8428-789819ea70d3";
+			var password = "t1WDv4Uuvrvh";
+			var queryString = "\"" + name +  "\"";
+			var foodName = encodeURIComponent(queryString);
+			$.ajax
+			  ({
+			    type: "GET",
+			    url: "https://gateway.watsonplatform.net/discovery/api/v1/environments/cbd7065e-8e38-4ea6-9bc5-0f71bdd5a3bc/collections/1bce84dc-a68a-44dc-8799-7f2f85f82b9b/query?version=2016-11-07&query="+foodName+ "&count=5&offset=&aggregation=term%28docSentiment.type%2Ccount%3A3%29&filter=blekko.hostrank%3E20%2Cblekko.chrondate%3E1493870400%2Cblekko.chrondate%3C1496462400&passages=false&highlight=true&return=",
+			    dataType: 'json',
+					beforeSend: function (xhr) {
+					    xhr.setRequestHeader ("Authorization", "Basic " + btoa(username + ":" + password));
+					},
+			    success: function (data){
+						var results = data.aggregations[0].results;
+						console.log(results);
+						var positive;
+						var negative;
+						var neutral;
+						for (var i=0;i<results.length;i++){
+							if (results[i].key === "positive"){
+								positive = results[i].matching_results;
+							}
+						}
+						for (var i=0;i<results.length;i++){
+							if (results[i].key === "negative"){
+								negative = results[i].matching_results;
+							}
+						}
+						for (var i=0;i<results.length;i++){
+							if (results[i].key === "neutral"){
+								neutral = results[i].matching_results;
+							}
+						}
+						// var negative = results[0].matching_results;
+						// var positive = results[1].matching_results;
+						// var neutral = results[2].matching_results;
+						var sum = positive+negative+neutral;
+						var percPos = positive/sum * 100;
+						var percNeg = negative/sum * 100;
+						$("#percPos").html((percPos).toFixed(2)+"%");
+						$("#percNeg").html((percNeg).toFixed(2)+"%");
+						// console.log(neutral/sum);
+
+
+			    }
+			});
 		});
 
 		// Update the contents of the toolbars
@@ -145,9 +176,11 @@
 			<h3 style="margin-left:10px;">Sentiments powered by IBM</h3>
 			<center>
 				<div style="display:flex; flex-direction:row; width: 200px;">
-					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/2000px-Gold_Star.svg.png" style="width: 60px; height: 60px; flex:0.5"/>
-					<p style="flex:0.5; color:green;">89%</p>
-
+					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/2000px-Gold_Star.svg.png" style="width: 60px; height: 60px; flex:1"/>
+					<div style="flex:1; margin-left: 15px;">
+						<p style="flex:0.5; color:green;" id="percPos"></p>
+						<p style="flex:0.5; color:red;" id="percNeg"></p>
+					</div>
 				</div>
 			</center>
 		</div>
