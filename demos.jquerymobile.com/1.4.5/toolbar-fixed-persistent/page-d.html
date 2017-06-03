@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	
+
 <!-- Mirrored from demos.jquerymobile.com/1.4.5/toolbar-fixed-persistent/page-d.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Jun 2017 01:40:53 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
@@ -15,10 +15,79 @@
 	<script src="http://demos.jquerymobile.com/1.4.5/_assets/js/index.js"></script>
 	<script src="http://demos.jquerymobile.com/1.4.5/js/jquery.mobile-1.4.5.min.js"></script>
 	<script>
+	function generateIngredients(ingredient){
+			var str = "				<li class=\"dish ui-li-has-alt ui-li-has-thumb ui-last-child\"><a href=\"#\" class=\"ui-btn ui-btn-icon-right ui-icon-carat-r \"style=\"margin-right:10px; margin-left:10px;\"><img style=\"height:80px; margin-top: 20px;margin-left: 5px;\" src=";
+			str += "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg/1200px-Phat_Thai_kung_Chang_Khien_street_stall.jpg";
+			str += ">";
+			str += "<h2>";
+			str += ingredient;
+			str += "</h2>";
+
+			str += "</a></li>"
+			return str;
+	}
+
+	var mydata = localStorage.getItem("data");
+	$("#info").html(mydata.name);
 		$(function() {
 			$( "[data-role='navbar']" ).navbar();
 			$( "[data-role='header'], [data-role='footer']" ).toolbar();
+			// food page
+				var food =  {
+			  "name": "Pad Thai",
+			  "host": "Matteo",
+			  "price": 10000,
+			  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg/1200px-Phat_Thai_kung_Chang_Khien_street_stall.jpg",
+			  "date": "12/20",
+			  "time": "11.20pm",
+			  "ingredient": [
+			    "chicken"
+			  ],
+			  "location": "Kimmel",
+			  "currentNum": 3,
+			  "maxNum": 10
+			};
+			var name = food.name;
+			var host = food.host;
+			var price = food.price;
+			var img = food.img;
+			var date = food.date;
+			var time = food.time;
+			var ingredient = food.ingredient;
+			var location = food.location;
+			var currentNum = food.currentNum;
+			var maxNum = food.maxNum;
+			$("#img").attr("src", img)
+			$("#name").html(name)
+			$("#host").html(host)
+			$("#price").html(price)
+			$("#date").html(date)
+			$("#time").html(time)
+			myIngredients = generateIngredients(ingredient[0]);
+			console.log(myIngredients);
+
+			$("#ingredients").append(myIngredients);
+
+// 			$.get('https://1a6b81a5-6f50-4b65-8428-789819ea70d3:t1WDv4Uuvrvh@gateway.watsonplatform.net/discovery/api/v1/environments/cbd7065e-8e38-4ea6-9bc5-0f71bdd5a3bc/collections/1bce84dc-a68a-44dc-8799-7f2f85f82b9b/query?version=2016-11-07&query=&count=&offset=&aggregation=&filter=&passages=false&highlight=true&return=',{
+//   "count": 5,
+//   "return": "title,enrichedTitle.text,url,host,blekko.chrondate",
+//   "query": "\"green curry\",language:english",
+//   "aggregations": [
+//     "nested(enrichedTitle.entities).filter(enrichedTitle.entities.type:Company).term(enrichedTitle.entities.text)",
+//     "nested(enrichedTitle.entities).filter(enrichedTitle.entities.type:Person).term(enrichedTitle.entities.text)",
+//     "term(enrichedTitle.concepts.text)",
+//     "term(blekko.basedomain).term(docSentiment.type)",
+//     "term(docSentiment.type)",
+//     "min(docSentiment.score)",
+//     "max(docSentiment.score)",
+//     "filter(enrichedTitle.entities.type::Company).term(enrichedTitle.entities.text).timeslice(blekko.chrondate,1day).term(docSentiment.type)"
+//   ],
+//   "filter": "blekko.hostrank>20,blekko.chrondate>1491192000,blekko.chrondate<1496462400"
+// },function(data){
+// 				console.log(data);
+// 			});
 		});
+
 		// Update the contents of the toolbars
 		$( document ).on( "pagecontainerchange", function() {
 			// Each of the four pages in this demo has a data-title attribute
@@ -35,6 +104,7 @@
 					$( this ).addClass( "ui-btn-active" );
 				}
 			});
+
 		});
 	</script>
 </head>
@@ -45,65 +115,44 @@
     </div><!-- /header -->
 
 	<div data-role="page" data-title="Emails">
+		<div style="display:flex; flex-direction:row;">
+				<div style="flex:0.7">
+					<img src="" id="img" style="width: 170px; margin: 20px;"/>
+				</div>
+				<div style="flex:0.5; ">
+					<h1 id="name" style="margin:0px; margin-top:30px;"></h1>
+					<p id="host" style="margin:0px; margin-top: 10px;"></p>
+					<p id="price" style="margin:0px;"></p>
+					<p id="date" style="margin:0px;"></p>
+					<p id="time" style="margin:0px;"></p>
+				</div>
 
-	    <div class="ui-content" role="main">
+		</div>
+		<div>
+			<h3 style="margin-left:10px;">Ingredients</h3>
+				<ul data-role="listview"  data-filter-theme="a" id="ingredients">
 
-			<ul data-role="listview" data-theme="a" data-dividertheme="a" data-filter="true" data-filter-theme="a" data-filter-placeholder="Search messages...">
-				<li data-role="list-divider">Friday, October 8, 2010 <span class="ui-li-count">2</span></li>
-				<li><a href="#">
-					<h3>Stephen Weber</h3>
-				<p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
-				<p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
-					<p class="ui-li-aside"><strong>6:24</strong>PM</p>
-				</a></li>
-				<li><a href="#">
-					<h3>jQuery Team</h3>
-				<p><strong>Boston Conference Planning</strong></p>
-				<p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p>
-					<p class="ui-li-aside"><strong>9:18</strong>AM</p>
-				</a></li>
-				<li data-role="list-divider">Thursday, October 7, 2010 <span class="ui-li-count">1</span></li>
-				<li><a href="#">
-					<h3>Avery Walker</h3>
-				<p><strong>Re: Dinner Tonight</strong></p>
-				<p>Sure, let's plan on meeting at Highland Kitchen at 8:00 tonight. Can't wait! </p>
-					<p class="ui-li-aside"><strong>4:48</strong>PM</p>
-				</a></li>
-				<li data-role="list-divider">Wednesday, October 6, 2010 <span class="ui-li-count">3</span></li>
-				<li><a href="#">
-					<h3>Amazon.com</h3>
-				<p><strong>4-for-3 Books for Kids</strong></p>
-				<p>As someone who has purchased children's books from our 4-for-3 Store, you may be interested in these featured books.</p>
-					<p class="ui-li-aside"><strong>12:47</strong>PM</p>
-				</a></li>
-				<li><a href="#">
-					<h3>Mike Taylor</h3>
-				<p><strong>Re: This weekend in Maine</strong></p>
-				<p>Hey little buddy, sorry but I can't make it up to vacationland this weekend. Maybe next weekend?</p>
-					<p class="ui-li-aside"><strong>6:24</strong>AM</p>
-				</a></li>
-				<li><a href="#">
-					<h3>Redfin</h3>
-				<p><strong>Redfin listing updates for today</strong></p>
-				<p>There are 3 updates for the home on your watchlist: 1 updated MLS listing and 2 homes under contract.</p>
-					<p class="ui-li-aside"><strong>5:52</strong>AM</p>
-				</a></li>
-					<li data-role="list-divider">Tuesday, October 5, 2010 <span class="ui-li-count">3</span></li>
-					<li><a href="index-2.html">
-						<h3>Angela Smith</h3>
-					<p><strong>Link Request</strong></p>
-					<p>My name is Angela Smith, SEO Consultant. I've greatly enjoyed looking through your site and I was wondering if you'd be interested in providing a link</p>
-						<p class="ui-li-aside"><strong>6:24</strong>AM</p>
-					</a></li>
-					<li><a href="index-2.html">
-						<h3>Mike Taylor</h3>
-					<p><strong>This weekend in Maine</strong></p>
-					<p>Sounds good, let me check into our plans.</p>
-						<p class="ui-li-aside"><strong>6:24</strong>AM</p>
-					</a></li>
-			</ul>
+				</ul>
 
-		</div><!-- /content -->
+		</div>
+		<div>
+				<h3 style="margin-left:10px;">Location</h3>
+				<center>
+					<img src="http://i.imgur.com/YUYky2d.png" style="width: 250px;"/>
+				</center>
+		</div>
+		<div>
+			<h3 style="margin-left:10px;">Sentiments powered by IBM</h3>
+			<center>
+				<div style="display:flex; flex-direction:row; width: 200px;">
+					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/2000px-Gold_Star.svg.png" style="width: 60px; height: 60px; flex:0.5"/>
+					<p style="flex:0.5; color:green;">89%</p>
+
+				</div>
+			</center>
+		</div>
+
+		<h1 id="info"></h1>
 
 	</div><!-- /page -->
 
