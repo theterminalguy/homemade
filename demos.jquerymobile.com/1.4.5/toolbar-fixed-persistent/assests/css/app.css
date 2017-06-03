@@ -1,0 +1,21 @@
+#map {
+    height: 220px;
+    width: 100%;
+    background-image: url(http://via.placeholder.com/343x220);
+}
+
+ div.tagsinput {
+  border: none !important;
+  background: none !important;
+ }
+
+ #ingredients_tagsinput {
+     width: 330px;
+ }
+
+ #imgpreview {
+     margin-left: 20%;
+     border-radius: 2px;
+     border: 2px solid lightgrey;
+     height: 150px;
+ }
