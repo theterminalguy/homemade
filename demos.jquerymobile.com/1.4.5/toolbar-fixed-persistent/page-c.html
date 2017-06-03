@@ -16,7 +16,7 @@
 	<script src="http://demos.jquerymobile.com/1.4.5/js/jquery.mobile-1.4.5.min.js"></script>
 	<script>
 		function generateString(object){
-				var str = "				<li class=\"ui-li-has-alt ui-li-has-thumb ui-last-child\"><a href=\"#\" class=\"ui-btn ui-btn-icon-right ui-icon-carat-r \"style=\"margin-right:0px;\"\"><img style=\"height:80px; margin-top: 20px;margin-left: 5px;\" src=\"";
+				var str = "				<li class=\"dish ui-li-has-alt ui-li-has-thumb ui-last-child\"><a href=\"#\" class=\"ui-btn ui-btn-icon-right ui-icon-carat-r \"style=\"margin-right:0px;\"\"><img style=\"height:80px; margin-top: 20px;margin-left: 5px;\" src=\"";
 				str += object["img"];
 				str += "\">";
 				str += "<h2>";
@@ -40,6 +40,25 @@
 		$(function() {
 			$( "[data-role='navbar']" ).navbar();
 			$( "[data-role='header'], [data-role='footer']" ).toolbar();
+
+			// Working POST code
+		// 	var testpost = [ {
+		//   "name": "Pad Thai",
+		//   "host": "Matteo",
+		//   "price": 10000,
+		//   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg/1200px-Phat_Thai_kung_Chang_Khien_street_stall.jpg",
+		//   "date": "12/20",
+		//   "time": "11.20pm",
+		//   "ingredient": [
+		//     "chicken"
+		//   ],
+		//   "location": "Kimmel",
+		//   "currentNum": 3,
+		//   "maxNum": 10
+		// }];
+		// 	$.post("https://homemade.mybluemix.net/api/Dishes", testpost[0]);
+			// END
+
 			$.get("https://homemade.mybluemix.net/api/Dishes", function(result){
         var data = result;
 				var fullstring = "";
@@ -48,12 +67,24 @@
 				});
 				// var mystring = generateString(data[0]);
 				$("#mylist").append(fullstring);
+				$('.dish').click(function(evt){
+					var name = $(this).find('a').find('h2').html();
+					var mydata;
+					for (var i =0;i<data.length;i++){
+						if (data[i].name === name){
+							mydata = data[i];
+						}
+					}
+					// console.log(mydata);
+					localStorage.setItem("data", mydata);
+					$.mobile.changePage("page-d.html");
+
+
+				});
     	});
 
-			// Working POST code
-			// var testpost = [ {"name":"Test..", "date":"12/10", "host":"Bruce Wayne", "price":10,"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg/1200px-Phat_Thai_kung_Chang_Khien_street_stall.jpg"}];
-			// $.post("https://homemade.mybluemix.net/api/Dishes", testpost[0]);
-			// END
+
+
 
 
 		});
@@ -84,7 +115,7 @@
         <h1>Albums</h1>
     </div><!-- /header -->
 
-<div data-role="page" data-title="Food List">
+<div data-role="page" data-title="Food List" id="food">
 
     <div class="ui-content" role="main" id="mydiv">
 

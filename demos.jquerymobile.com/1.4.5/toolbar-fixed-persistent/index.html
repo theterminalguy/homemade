@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	
+
 <!-- Mirrored from demos.jquerymobile.com/1.4.5/toolbar-fixed-persistent/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Jun 2017 01:40:52 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
@@ -18,9 +18,11 @@
 		$(function() {
 			$( "[data-role='navbar']" ).navbar();
 			$( "[data-role='header'], [data-role='footer']" ).toolbar();
+
 		});
 		// Update the contents of the toolbars
 		$( document ).on( "pagecontainerchange", function() {
+			alert("HELLo")
 			// Each of the four pages in this demo has a data-title attribute
 			// which value is equal to the text of the nav button
 			// For example, on first page: <div data-role="page" data-title="Info">
