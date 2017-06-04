@@ -20,6 +20,16 @@
 	<script src="http://demos.jquerymobile.com/1.4.5/js/jquery.js"></script>
 	<script src="http://demos.jquerymobile.com/1.4.5/_assets/js/index.js"></script>
 	<script src="http://demos.jquerymobile.com/1.4.5/js/jquery.mobile-1.4.5.min.js"></script>
+
+	<script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+	<style>
+	.canvasjs-chart-credit {
+	  display: none;
+	}
+	</style>
+
+
 	<script>
 	function generateIngredients(ingredient){
 			var str = "				<li class=\"dish ui-li-has-alt ui-li-has-thumb ui-last-child\"><a href=\"#\" class=\"ui-btn ui-btn-icon-right ui-icon-carat-r \"style=\"margin-right:10px; margin-left:10px;\"><img style=\"height:80px; margin-top: 20px;margin-left: 5px;\" src=";
@@ -28,7 +38,6 @@
 			str += "<h2>";
 			str += ingredient;
 			str += "</h2>";
-
 			str += "</a></li>"
 			return str;
 	}
@@ -51,7 +60,8 @@
 			  ],
 			  "location": "Kimmel",
 			  "currentNum": 3,
-			  "maxNum": 10
+			  "maxNum": 10,
+				"id": "d479cb856b934c055c8197db166566fd" // TO BE REPLACED
 			};
 			var name = food.name;
 			var host = food.host;
@@ -73,6 +83,9 @@
 			console.log(myIngredients);
 
 			$("#ingredients").append(myIngredients);
+			$("#addImage").click(function(){
+				console.log("clicked");
+			})
 
 			// $.get('https://gateway.watsonplatform.net/discovery/api/v1/environments/cbd7065e-8e38-4ea6-9bc5-0f71bdd5a3bc/collections/1bce84dc-a68a-44dc-8799-7f2f85f82b9b/query?version=2016-11-07&query=&count=&offset=&aggregation=&filter=&passages=false&highlight=true&return=',function(data){
 			// 	console.log(data);
@@ -81,6 +94,31 @@
 			var password = "t1WDv4Uuvrvh";
 			var queryString = "\"" + name +  "\"";
 			var foodName = encodeURIComponent(queryString);
+
+			function renderChart(pos,neg,neu) {
+				var chart = new CanvasJS.Chart("chartContainer", {
+					theme: "theme2",//theme1
+					title:{
+						text: "Sentiments"
+					},
+					animationEnabled: false,   // change to true
+					data: [
+					{
+						// Change type to "bar", "area", "spline", "pie",etc.
+						type: "doughnut",
+						dataPoints: [
+							{ label: "positive",  y: pos  },
+							{ label: "negative", y: neg  },
+							{ label: "neutral", y: neu  }
+						]
+					}
+					]
+				});
+				chart.render();
+			}
+
+
+
 			$.ajax
 			  ({
 			    type: "GET",
@@ -116,12 +154,41 @@
 						var sum = positive+negative+neutral;
 						var percPos = positive/sum * 100;
 						var percNeg = negative/sum * 100;
-						$("#percPos").html((percPos).toFixed(2)+"%");
-						$("#percNeg").html((percNeg).toFixed(2)+"%");
+						var percNeu = (sum-positive-negative)/sum * 100;
+						percPos = percPos.toFixed(2);
+						percNeg = percNeg.toFixed(2);
+						percNeu = percNeu.toFixed(2);
+						// $("#percPos").html((percPos).toFixed(2)+"%");
+						// $("#percNeg").html((percNeg).toFixed(2)+"%");
+						renderChart(percPos,percNeg,percNeu);
 						// console.log(neutral/sum);
 
-
 			    }
+			});
+			// $("#supportDish").click(function(){
+			// 	var myObj = {  "currentNum": currentNum +1 };
+			// 	var id = food.id;
+			// 	console.log(myObj)
+			// 	console.log(id)
+			// 	$.post("https://homemade.mybluemix.net/api/Dishes/update?where=%7B%22id%22%3A%20%22"+id+"%22%7D", myObj).done(function(data){
+			// 		console.log("posted");
+			// 	});
+			// })
+
+			$("#img1").click(function(){
+				$.get("http://localhost:5000/peas",function(data){
+					console.log(data);
+				});
+			});
+			$("#img2").click(function(){
+				$.get("http://localhost:5000/bread",function(data){
+					console.log(data);
+				});
+			});
+			$("#img3").click(function(){
+				$.get("http://localhost:5000/apple",function(data){
+					console.log(data);
+				});
 			});
 		});
 
@@ -184,6 +251,63 @@
 						<li style="color:red;" id="percNeg"></li>
                 </ul>
 
+		<div>
+				<h3 style="margin-left:10px;">Location</h3>
+				<center>
+					<img src="http://i.imgur.com/YUYky2d.png" style="width: 250px;"/>
+				</center>
+		</div>
+		<div>
+			<h3 style="margin-left:10px;">Sentiments powered by IBM</h3>
+			<center>
+				<div style="display:flex; flex-direction:row; width: 200px;">
+					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/2000px-Gold_Star.svg.png" style="width: 60px; height: 60px; flex:1"/>
+					<div style="flex:1; margin-left: 15px;">
+						<p style="flex:0.5; color:green;" id="percPos"></p>
+						<p style="flex:0.5; color:red;" id="percNeg"></p>
+					</div>
+				</div>
+				<div id="chartContainer" style="height: 300px; width: 100%;">
+				</div>
+			</center>
+			<center>
+			<a style="color:green;" id="supportDish" href="#backDishPopup" data-rel="popup" data-position-to="window">Back this Dish!
+			</a>
+			</center>
+		</div>
+
+		<div data-role="popup" id="backDishPopup" class="ui-content" style="height: 400px; width: 300px;">
+				<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+
+
+					<h3>Contribute Ingredients</h3>
+					<center>
+					<div data-role="collapsible" data-theme="b" data-content-theme="b">
+					  <h3>Select an Image</h3>
+						<div id="row1" style="display:flex; flex-direction:row;">
+							<img style="flex:0.3;  height:90px;" src="../../../img/peas.jpg" id="img1"/>
+							<img style="flex:0.3;  height:90px;" src="../../../img/bread.jpg" id="img2"/>
+							<img style="flex:0.3;  height:90px;" src="../../../img/apple.jpeg" id="img3"/>
+						</div>
+					</div>
+
+					</center>
+					<div id="foodImages">
+
+						<div id="row2" style="display:flex; flex-direction:row;">
+
+						</div>
+					</div>
+
+		</div>
+
+		<div data-role="popup" id="ingredients" class="ui-content" style="height: 400px; width: 300px;">
+		</div>
+		<div data-role="popup" id="chatbot" class="ui-content" style="height: 400px; width: 300px;">
+			<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+			<div id="chat-box-div" style=" position: relative;  clear: both;border: 1px black solid;">
+
+			</div>
 		</div>
 
 		<h1 id="info"></h1>
@@ -211,6 +335,8 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.js"></script>
 </body>
+<script src="/node_modules/card/dist/jquery.card.js"></script>
+
 
 <!-- Mirrored from demos.jquerymobile.com/1.4.5/toolbar-fixed-persistent/page-d.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Jun 2017 01:40:53 GMT -->
 </html>
