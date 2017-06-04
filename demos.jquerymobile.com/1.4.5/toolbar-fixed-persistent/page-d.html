@@ -91,7 +91,8 @@
 
 			function renderChart(pos,neg,neu) {
 				var chart = new CanvasJS.Chart("chartContainer", {
-					theme: "theme2",//theme1
+
+					colorSet:"redGreen",
 					title:{
 						text: "Sentiments"
 					},
@@ -100,6 +101,8 @@
 					{
 						// Change type to "bar", "area", "spline", "pie",etc.
 						type: "doughnut",
+						radius: "90%",
+						innerRadius: "30%",
 						dataPoints: [
 							{ label: "positive",  y: pos  },
 							{ label: "negative", y: neg  },
@@ -108,9 +111,34 @@
 					}
 					]
 				});
+				CanvasJS.addColorSet("greenShades",
+                [//colorSet Array
+
+                "#00ff00",
+                "#D3D3D3",
+                "#ff0000"
+
+                ]);
 				chart.render();
 			}
 
+			$("#suggestedNames").hide();
+			function displaySuggestions(imgArr){
+				var firstStr = imgArr[0].class + " : " + imgArr[0].score;
+				var secondStr = imgArr[1].class + " : " + imgArr[1].score;
+				var thirdStr = imgArr[2].class + " : " + imgArr[2].score;
+				var fourthStr = imgArr[3].class + " : " + imgArr[3].score;
+				var fifthStr = imgArr[4].class + " : " + imgArr[4].score;
+				var sixthStr = imgArr[5].class + " : " + imgArr[5].score;
+				$("#suggestedNames").show();
+				$("#firstSug").html(firstStr);
+				$("#secondSug").html(secondStr);
+				$("#thirdSug").html(thirdStr);
+				$("#fourthSug").html(fourthStr);
+				$("#fifthSug").html(fifthStr);
+				$("#sixthSug").html(sixthStr);
+
+			}
 
 
 			$.ajax
@@ -171,7 +199,33 @@
 
 			$("#img1").click(function(){
 				$.get("http://localhost:5000/peas",function(data){
-					console.log(data);
+						var imageData = JSON.parse(data).images;
+
+						var foodArr = imageData[0].classifiers[0].classes;
+						var topSix = [];
+						for (var i=0;i<6;i++){
+							topSix.push(foodArr[i]);
+						}
+
+
+						// var elements = data.images[0].classifiers[0].classes;
+						// var scores = [];
+						// var sortedScores = [];
+						// var classes = [];
+						//
+						//
+						//
+						//
+						// elements.sort(function(a,b){
+						//   return a.score - b.score;
+						// });
+						// console.log(elements);
+						// var firstFood = {score: elements[elements.length-1].score, name: elements[elements.length-1].class};
+						// var secondFood = {score: elements[elements.length-2].score, name: elements[elements.length-2].class};
+						// var thirdFood = {score: elements[elements.length-3].score, name: elements[elements.length-3].class};
+
+
+						displaySuggestions(topSix);
 				});
 			});
 			$("#img2").click(function(){
@@ -184,6 +238,7 @@
 					console.log(data);
 				});
 			});
+
 		});
 
 		// Update the contents of the toolbars
@@ -271,6 +326,23 @@
 							<img style="flex:0.3;  height:90px;" src="../../../img/bread.jpg" id="img2"/>
 							<img style="flex:0.3;  height:90px;" src="../../../img/apple.jpeg" id="img3"/>
 						</div>
+						<div id="suggestedNames">
+								<div style="display:flex;flex-direction:row; width:100%;">
+									<button id="firstSug" style="flex:0.5; font-size: 9px; margin:1px;"></button>
+									<button id="secondSug" style="flex:0.5; font-size: 9px; margin:1px;"></button>
+								</div>
+								<div style="display:flex;flex-direction:row;">
+									<button id="thirdSug" style="flex:0.5; font-size: 9px; margin:1px;"></button>
+									<button id="fourthSug" style="flex:0.5; font-size: 9px; margin:1px;"></button>
+								</div>
+
+								<div style="display:flex;flex-direction:row;">
+									<button id="fifthSug" style="flex:0.5; font-size: 9px; margin:1px;"></button>
+									<button id="sixthSug" style="flex:0.5; font-size: 9px; margin:1px;"></button>
+								</div>
+						</div>
+
+						<p id="suggestedNames"></p>
 					</div>
 
 					</center>
