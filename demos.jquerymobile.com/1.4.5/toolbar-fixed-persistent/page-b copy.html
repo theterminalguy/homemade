@@ -1,4 +1,22 @@
-
+Skip to content
+This repository
+newdish.html
+Pull requests
+Issues
+Marketplace
+Gist
+ @patsukhum
+ Sign out
+ Unwatch 4
+  Star 0
+ Fork 0 theterminalguy/homemade
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki Insights
+Branch: master Find file Copy pathhomemade/demos.jquerymobile.com/1.4.5/toolbar-fixed-persistent/newdish.html
+89eaf39  19 hours ago
+@theterminalguy theterminalguy Tentatively designed dashboard
+1 contributor
+RawBlameHistory
+81 lines (63 sloc)  3.78 KB
 <!DOCTYPE html>
 <html>
 
@@ -18,39 +36,6 @@
 	<script src="http://demos.jquerymobile.com/1.4.5/_assets/js/index.js"></script>
 	<script src="http://demos.jquerymobile.com/1.4.5/js/jquery.mobile-1.4.5.min.js"></script>
     <script src="assests/js/app.js"></script>
-		<script>
-		// Working POST code
-		// var testpost = [ {
-		//   "name": "Pad Thai",
-		//   "host": "Matteo",
-		//   "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg/1200px-Phat_Thai_kung_Chang_Khien_street_stall.jpg",
-		//   "date": "12/20",
-		//   "time": "11.20pm",
-		//   "ingredient": [
-		//     "chicken"
-		//   ],
-		//
-		//   "location": "Kimmel",
-		//   "currentNum": 3,
-		//   "maxNum": 10
-		// }];
-		// $.post("https://homemade.mybluemix.net/api/Dishes", testpost[0]);
-
-		$(function() {
-			$("#btnpostdish").click(function(){
-				var name = $("#dishname").val();
-				var date = $("#date").val();
-				// and so on
-				var postJSON = {
-					name: name;
-					date: date;
-				};
-
-			});
-			}
-		)
-		</script>
-
 </head>
 <body>
     <div data-role="header" data-position="fixed" data-theme="a">
@@ -63,18 +48,12 @@
 	    <div class="ui-content" role="main">
             <form id="newdish">
                 <label for="dish name">Dish Name</label>
-                <input type="text" name="name" id="name">
+                <input type="text" name="dishname" id="dishname">
 
                 <label for="Dish Image">Dish Image</label>
                 <img src="rice.jpg" id="imgpreview"/>
 
                 <input type="file" name="file" id="file" value="">
-
-                <input type="hidden" name="host" value="Thomas hanger"/>
-                <input type="hidden" name="currentNum" value="5"/>
-                <input type="hidden" name="maxNum" value="10" />
-                <input type="hidden" name="time" value="10"
-                <input type="hidden" name="img" value="" />
 
                 <label for="serving capacity">Serving Capacity</label>
                 <input type="range" name="points" id="points" value="2" min="2" max="10" data-highlight="true">
@@ -83,18 +62,16 @@
 				<input type="number" name="cost" pattern="[0-9]*" id="cost" value="5">
 
                 <label for"ingredients">Ingredients</label>
-                <input type="text" name="ingredient" id="ingredient"/>
+                <input type="text" name="ingredients" id="ingredients"/>
 
                 <label for="date">Date</label>
                 <input type="datetime-local" name="date" id="date" value="">
 
                 <label for="host location">Host Location</label>
-                <input type="text" name="location" id="location"  placholder="Enter a location" class="controls">
+                <input type="text" name="hostlocation" id="hostlocation"  placholder="Enter a location" class="controls">
 
                 <div id="map"></div>
 
-								<!-- <button id="btnpostdish">Post
-								</button> -->
 
                 <input type="submit" value="Post" id="btnpostdish"/>
             </form>
@@ -106,10 +83,10 @@
 	<div data-role="footer" data-position="fixed" data-theme="a">
 		<div data-role="navbar">
 			<ul>
-				<li><a href="javascript:location.href = 'dashboard.html'" data-prefetch="true" data-transition="fade">Dashboard</a></li>
-				<li><a href="newdish.html" data-prefetch="true" data-transition="flip">New Dish</a></li>
-				<li><a href="page-c.html" data-prefetch="true" data-transition="turn">Settings</a></li>
-				<li><a href="#!" id="loginpage" data-prefetch="true" data-transition="slide">Logout</a></li>
+				<li><a href="index-2.html" data-prefetch="true" data-transition="fade">Info</a></li>
+				<li><a href="page-b.html" data-prefetch="true" data-transition="flip">Friends</a></li>
+				<li><a href="page-c.html" data-prefetch="true" data-transition="turn">Albums</a></li>
+				<li><a href="#!" data-prefetch="true" data-transition="slide">New Dish</a></li>
 			</ul>
 		</div><!-- /navbar -->
 	</div><!-- /footer -->
@@ -120,3 +97,5 @@
          async defer></script>
 </body>
 </html>
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help
