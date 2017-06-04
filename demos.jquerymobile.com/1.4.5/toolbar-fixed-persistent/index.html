@@ -45,24 +45,31 @@
  margin-top: 20%;
 }
 
+#pg {
+ background-color: oldlace;
+}
+
+#btnlogin {
+    background-color: #30363c;
+}
 </style>
 </head>
 <body>
-	<div data-role="page" data-title="Info" class="jqm-demos">
+	<div data-role="page" data-title="homemade" class="jqm-demos" id="pg">
 
 	    <div role="main" class="ui-content jqm-content jqm-fullwidth">
             <div id="logocontainer">
                 <img src="assests/img/logo.jpeg" />
             </div>
 
-  <a href="#myPopup" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all ui-icon-check ui-btn-icon-left" style="margin-top:30%;margin-left:15%;width:200px;">Login with email</a>
-  <a href="#!" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all ui-icon-check ui-btn-icon-left" style="margin-top:10%;margin-left:15%;width:200px;">Signup with email</a>
+  <a href="#myPopup" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all ui-icon-lock ui-btn-icon-left" style="margin-top:30%;margin-left:15%;width:200px;background-color: #30363c;border: 0px;color: white;" aria-haspopup="true" aria-owns="myPopup" aria-expanded="false">Login with email</a>
+  <a href="#!" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all ui-icon-user ui-btn-icon-left" style="margin-top:10%;margin-left:15%;width:200px;background-color: #c52c2c;color: white;border: 0px;" aria-haspopup="true" aria-owns="!" aria-expanded="false">Signup with email</a>
 
     <div data-role="popup" id="myPopup" class="ui-content" style="min-width:250px;margin-top:-70%;">
       <form method="post" action="/action_page_post.php">
         <div>
           <h3>Login information</h3>
-          <label for="usrnm" class="ui-hidden-accessible">Username:</label>
+          <label for="username" class="ui-hidden-accessible">Username:</label>
           <input type="text" name="user" id="usrnm" placeholder="Username">
           <label for="pswd" class="ui-hidden-accessible">Password:</label>
           <input type="password" name="passw" id="pswd" placeholder="Password">

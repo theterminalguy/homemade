@@ -97,3 +97,8 @@ $("#btnpostdish").click(function(e){
     console.log(formdata);
     //send data to server
 });
+
+$("#loginpage").click(function(e){
+    e.preventDefault();
+    location.href = "index.html"
+});

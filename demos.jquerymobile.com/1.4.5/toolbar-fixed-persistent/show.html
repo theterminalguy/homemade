@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="http://demos.jquerymobile.com/1.4.5/css/themes/default/jquery.mobile-1.4.5.min.css">
 	<link rel="stylesheet" href="http://demos.jquerymobile.com/1.4.5/_assets/css/jqm-demos.css">
+
+       <style>
+    .canvasjs-chart-credit {
+      display: none;
+    }
+    </style>
 	<script src="http://demos.jquerymobile.com/1.4.5/js/jquery.js"></script>
 	<script src="http://demos.jquerymobile.com/1.4.5/_assets/js/index.js"></script>
 	<script src="http://demos.jquerymobile.com/1.4.5/js/jquery.mobile-1.4.5.min.js"></script>
@@ -177,6 +183,7 @@
 						<li style="color:green;" id="percPos"></li>
 						<li style="color:red;" id="percNeg"></li>
                 </ul>
+
 		</div>
 
 		<h1 id="info"></h1>
@@ -186,14 +193,23 @@
 	<div data-role="footer" data-position="fixed" data-theme="a">
 		<div data-role="navbar">
 			<ul>
-				<li><a href="dashboard.html" data-prefetch="true" data-transition="fade">Dashboard</a></li>
+				<li><a href="#!" id="dashboard" data-prefetch="true" data-transition="fade">Dashboard</a></li>
 				<li><a href="newdish.html" data-prefetch="true" data-transition="flip">New Dish</a></li>
 				<li><a href="page-c.html" data-prefetch="true" data-transition="turn">Settings</a></li>
-				<li><a href="page-d.html" data-prefetch="true" data-transition="slide">Logout</a></li>
+				<li><a href="#!" id="loginpage" data-prefetch="true" data-transition="slide">Logout</a></li>
 			</ul>
 		</div><!-- /navbar -->
 	</div><!-- /footer -->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js"></script>
+    <script src="assests/js/app-bottom.js"></script>
+    <script>
+    $("#dashboard").click(function(e){
+        e.preventDefault();
+        location.href= "dashboard.html"
+    });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.js"></script>
 </body>
 
 <!-- Mirrored from demos.jquerymobile.com/1.4.5/toolbar-fixed-persistent/page-d.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Jun 2017 01:40:53 GMT -->
