@@ -1,0 +1,15 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "cloudantDB": {
+    "url": "https://1169cbf8-a2a0-4740-a567-d708a24536e2-bluemix:4a8e92486b2e0312b67cd2084ecc866dc2dec755b00b0c1d5522f5b9aff38b3a@1169cbf8-a2a0-4740-a567-d708a24536e2-bluemix.cloudant.com",
+    "database": "housemade",
+    "username": "",
+    "password": "",
+    "name": "cloudantDB",
+    "modelIndex": "",
+    "connector": "cloudant"
+  }
+}
