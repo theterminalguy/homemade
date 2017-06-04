@@ -108,3 +108,8 @@ $("#loginpage").click(function(e){
     e.preventDefault();
     location.href = "index.html"
 });
+
+$("#file").change(function(){
+ $("#imgpreview").show();
+});
+

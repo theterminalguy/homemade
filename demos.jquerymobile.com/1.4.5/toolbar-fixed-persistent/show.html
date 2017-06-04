@@ -51,10 +51,9 @@
 				var food =  {
 			  "name": "Green Curry",
 			  "host": "Matteo",
-			  "price": 10000,
 			  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg/1200px-Phat_Thai_kung_Chang_Khien_street_stall.jpg",
-			  "date": "12/20",
-			  "time": "11.20pm",
+			  "date": "04 July 2017",
+			  "time": "11:20 PM",
 			  "ingredient": [
 			    "chicken"
 			  ],
@@ -288,35 +287,27 @@
 
 		</div>
 		<div>
-				<ul data-role="listview" data-theme="a" data-dividertheme="e" data-filter="false" data-filter-theme="a" data-filter-placeholder="Search friends...">
+				<ul data-role="listview" data-theme="a" data-dividertheme="e" data-filter="false" data-filter-theme="b">
 					<li data-role="list-divider">Ingredients</li>
 					<li><a href="#">Fish</a></li>
 					<li><a href="#">Onion</a></li>
 				</ul>
 
 		</div>
-				<ul data-role="listview" data-theme="a" data-dividertheme="e" data-filter="true" data-filter-theme="a" data-filter-placeholder="Search friends...">
+				<ul data-role="listview" data-theme="a" data-dividertheme="e" data-filter="true" data-filter-theme="a" data-filter-placeholder="Search backers...">
 					<li data-role="list-divider">Backers</li>
 					<li><a href="#">Adam Kinkaid</a></li>
 					<li><a href="#">Christopher Adams</a></li>
                 </ul>
-				<ul data-role="listview" data-theme="a" data-dividertheme="e" data-filter="false" data-filter-theme="a" data-filter-placeholder="Search friends...">
-					<li data-role="list-divider">Sentiments</li>
-						<li style="color:green;" id="percPos"></li>
-						<li style="color:red;" id="percNeg"></li>
-                </ul>
-
 		<div>
-				<h3 style="margin-left:10px;">Location</h3>
-				<center>
-					<img src="http://i.imgur.com/YUYky2d.png" style="width: 250px;"/>
-				</center>
+				<ul data-role="listview" data-theme="a" data-dividertheme="e" data-filter="false" data-filter-theme="b">
+					<li data-role="list-divider">Location</li>
+                    <img src="http://i.imgur.com/YUYky2d.png" style="width: 100%;"/>
+                </ul>
 		</div>
 		<div>
-			<h3 style="margin-left:10px;">Sentiments powered by IBM</h3>
 			<center>
 				<div style="display:flex; flex-direction:row; width: 200px;">
-					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/2000px-Gold_Star.svg.png" style="width: 60px; height: 60px; flex:1"/>
 					<div style="flex:1; margin-left: 15px;">
 						<p style="flex:0.5; color:green;" id="percPos"></p>
 						<p style="flex:0.5; color:red;" id="percNeg"></p>
