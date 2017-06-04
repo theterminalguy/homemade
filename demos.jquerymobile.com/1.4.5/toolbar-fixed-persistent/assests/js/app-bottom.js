@@ -1,5 +1,5 @@
 //tagInputs
-$('#ingredients').tagsInput({
+$('#ingredient').tagsInput({
     defaultText: 'ingredient'
 });
 
@@ -94,8 +94,14 @@ function initAutocomplete() {
 $("#btnpostdish").click(function(e){
     e.preventDefault();
     var formdata = $("#newdish").serialize();
-    console.log(formdata);
-    //send data to server
+	$.ajax({
+		type: "POST",
+		url: "https://homemade.mybluemix.net/api/Dishes",
+		data: formdata,
+		success: function(response) {
+			location.href = "dashboard.html"
+		}
+	})
 });
 
 $("#loginpage").click(function(e){

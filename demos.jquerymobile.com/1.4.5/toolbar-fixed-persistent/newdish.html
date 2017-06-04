@@ -29,12 +29,18 @@
 	    <div class="ui-content" role="main">
             <form id="newdish">
                 <label for="dish name">Dish Name</label>
-                <input type="text" name="dishname" id="dishname">
+                <input type="text" name="name" id="name">
 
                 <label for="Dish Image">Dish Image</label>
                 <img src="rice.jpg" id="imgpreview"/>
 
                 <input type="file" name="file" id="file" value="">
+
+                <input type="hidden" name="host" value="Thomas hanger"/>
+                <input type="hidden" name="currentNum" value="5"/>
+                <input type="hidden" name="maxNum" value="10" />
+                <input type="hidden" name="time" value="10"
+                <input type="hidden" name="img" value="" />
 
                 <label for="serving capacity">Serving Capacity</label>
                 <input type="range" name="points" id="points" value="2" min="2" max="10" data-highlight="true">
@@ -43,13 +49,13 @@
 				<input type="number" name="cost" pattern="[0-9]*" id="cost" value="5">
 
                 <label for"ingredients">Ingredients</label>
-                <input type="text" name="ingredients" id="ingredients"/>
+                <input type="text" name="ingredient" id="ingredient"/>
 
                 <label for="date">Date</label>
                 <input type="datetime-local" name="date" id="date" value="">
 
                 <label for="host location">Host Location</label>
-                <input type="text" name="hostlocation" id="hostlocation"  placholder="Enter a location" class="controls">
+                <input type="text" name="location" id="location"  placholder="Enter a location" class="controls">
 
                 <div id="map"></div>
 
