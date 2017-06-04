@@ -15,6 +15,10 @@
 	<script src="http://demos.jquerymobile.com/1.4.5/_assets/js/index.js"></script>
 	<script src="http://demos.jquerymobile.com/1.4.5/js/jquery.mobile-1.4.5.min.js"></script>
 	<script>
+function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+
+}
 		function generateString(object){
 				var str = "				<li class=\"dish ui-li-has-alt ui-li-has-thumb ui-last-child\"><a href=\"#\" class=\"ui-btn ui-btn-icon-right ui-icon-carat-r \"style=\"margin-right:0px;\"\"><img style=\"height:80px; margin-top: 20px;margin-left: 5px;\" src=\"";
 				str += object["img"];
@@ -23,12 +27,12 @@
 				str += object["name"];
 				str += "</h2>";
 				str += "<div style=\"display:flex; flex-direction:row;\"><p style=\"flex:1.6; margin-bottom:0;\">"
-         str += "420E 90th Street | view map<br/>";
+         str +=  getRandomInt(100, 300) +  "E  " + getRandomInt(20, 100) +  " street<br/>";
 				str += object["date"] + " | " + object["time"];
 				str += "</p>";
 				str += "<p style=\"flex:0.4;  margin-bottom:0;\"><b>"
-				str += object["price"];
-                str += "</b><br/><small>4 of 5</small></p></div>";
+				str += getRandomInt(0, 5) + ' of ' + getRandomInt(6, 10);
+                str += "</b><br/></p></div>";
 				str += "<p style=\"margin-top:0;\">by <b>";
 				str += object["host"];
 				str += "</b></p>";
