@@ -70,6 +70,48 @@ app.get('/apple', function(req, res){
   });
 });
 
+app.get('/brownegg', function(req, res){
+  var params = { images_file: fs.createReadStream('./img/brown_egg.png') }; 
+  visual_recognition.classify(params, function(err, res2) {
+    res.send(JSON.stringify(res2, null, 2));
+  });
+});
+
+app.get('/cabbage', function(req, res){
+  var params = { images_file: fs.createReadStream('./img/cabbage.png') }; 
+  visual_recognition.classify(params, function(err, res2) {
+    res.send(JSON.stringify(res2, null, 2));
+  });
+});
+
+app.get('/italy', function(req, res){
+  var params = { images_file: fs.createReadStream('./img/italy.png') }; 
+  visual_recognition.classify(params, function(err, res2) {
+    res.send(JSON.stringify(res2, null, 2));
+  });
+});
+
+app.get('/whiteegg', function(req, res){
+  var params = { images_file: fs.createReadStream('./img/white_egg.png') }; 
+  visual_recognition.classify(params, function(err, res2) {
+    res.send(JSON.stringify(res2, null, 2));
+  });
+});
+
+app.get('/veg', function(req, res){
+  var params = { images_file: fs.createReadStream('./img/veg.png') }; 
+  visual_recognition.classify(params, function(err, res2) {
+    res.send(JSON.stringify(res2, null, 2));
+  });
+});
+
+app.get('/steak', function(req, res){
+  var params = { images_file: fs.createReadStream('./img/steak.png') }; 
+  visual_recognition.classify(params, function(err, res2) {
+    res.send(JSON.stringify(res2, null, 2));
+  });
+});
+
 http.listen(process.env.PORT || 5000, function(){
   console.log('App started');
 });
