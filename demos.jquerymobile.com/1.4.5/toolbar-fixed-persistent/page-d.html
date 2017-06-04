@@ -15,6 +15,14 @@
 	<script src="http://demos.jquerymobile.com/1.4.5/_assets/js/index.js"></script>
 	<script src="http://demos.jquerymobile.com/1.4.5/js/jquery.mobile-1.4.5.min.js"></script>
 
+	<script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+	<style>
+	.canvasjs-chart-credit {
+	  display: none;
+	}
+	</style>
+
 
 	<script>
 	function generateIngredients(ingredient){
@@ -81,6 +89,30 @@
 			var queryString = "\"" + name +  "\"";
 			var foodName = encodeURIComponent(queryString);
 
+			function renderChart(pos,neg,neu) {
+				var chart = new CanvasJS.Chart("chartContainer", {
+					theme: "theme2",//theme1
+					title:{
+						text: "Sentiments"
+					},
+					animationEnabled: false,   // change to true
+					data: [
+					{
+						// Change type to "bar", "area", "spline", "pie",etc.
+						type: "doughnut",
+						dataPoints: [
+							{ label: "positive",  y: pos  },
+							{ label: "negative", y: neg  },
+							{ label: "neutral", y: neu  }
+						]
+					}
+					]
+				});
+				chart.render();
+			}
+
+
+
 			$.ajax
 			  ({
 			    type: "GET",
@@ -116,8 +148,13 @@
 						var sum = positive+negative+neutral;
 						var percPos = positive/sum * 100;
 						var percNeg = negative/sum * 100;
-						$("#percPos").html((percPos).toFixed(2)+"%");
-						$("#percNeg").html((percNeg).toFixed(2)+"%");
+						var percNeu = (sum-positive-negative)/sum * 100;
+						percPos = percPos.toFixed(2);
+						percNeg = percNeg.toFixed(2);
+						percNeu = percNeu.toFixed(2);
+						// $("#percPos").html((percPos).toFixed(2)+"%");
+						// $("#percNeg").html((percNeg).toFixed(2)+"%");
+						renderChart(percPos,percNeg,percNeu);
 						// console.log(neutral/sum);
 
 			    }
@@ -211,6 +248,8 @@
 						<p style="flex:0.5; color:green;" id="percPos"></p>
 						<p style="flex:0.5; color:red;" id="percNeg"></p>
 					</div>
+				</div>
+				<div id="chartContainer" style="height: 300px; width: 100%;">
 				</div>
 			</center>
 			<center>
