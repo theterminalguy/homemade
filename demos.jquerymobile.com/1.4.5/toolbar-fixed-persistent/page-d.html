@@ -128,15 +128,15 @@
 				var secondStr = imgArr[1].class + " : " + imgArr[1].score;
 				var thirdStr = imgArr[2].class + " : " + imgArr[2].score;
 				var fourthStr = imgArr[3].class + " : " + imgArr[3].score;
-				var fifthStr = imgArr[4].class + " : " + imgArr[4].score;
-				var sixthStr = imgArr[5].class + " : " + imgArr[5].score;
+				// var fifthStr = imgArr[4].class + " : " + imgArr[4].score;
+				// var sixthStr = imgArr[5].class + " : " + imgArr[5].score;
 				$("#suggestedNames").show();
 				$("#firstSug").html(firstStr);
 				$("#secondSug").html(secondStr);
 				$("#thirdSug").html(thirdStr);
 				$("#fourthSug").html(fourthStr);
-				$("#fifthSug").html(fifthStr);
-				$("#sixthSug").html(sixthStr);
+				// $("#fifthSug").html(fifthStr);
+				// $("#sixthSug").html(sixthStr);
 
 			}
 
@@ -196,48 +196,65 @@
 			// 		console.log("posted");
 			// 	});
 			// })
+			function processImg(data){
+				var imageData = JSON.parse(data).images;
+
+				var foodArr = imageData[0].classifiers[0].classes;
+				var topSix = [];
+				for (var i=0;i<6;i++){
+					topSix.push(foodArr[i]);
+				}
+				displaySuggestions(topSix);
+			}
 
 			$("#img1").click(function(){
 				$.get("http://localhost:5000/peas",function(data){
-						var imageData = JSON.parse(data).images;
-
-						var foodArr = imageData[0].classifiers[0].classes;
-						var topSix = [];
-						for (var i=0;i<6;i++){
-							topSix.push(foodArr[i]);
-						}
-
-
-						// var elements = data.images[0].classifiers[0].classes;
-						// var scores = [];
-						// var sortedScores = [];
-						// var classes = [];
-						//
-						//
-						//
-						//
-						// elements.sort(function(a,b){
-						//   return a.score - b.score;
-						// });
-						// console.log(elements);
-						// var firstFood = {score: elements[elements.length-1].score, name: elements[elements.length-1].class};
-						// var secondFood = {score: elements[elements.length-2].score, name: elements[elements.length-2].class};
-						// var thirdFood = {score: elements[elements.length-3].score, name: elements[elements.length-3].class};
-
-
-						displaySuggestions(topSix);
+						processImg(data);
 				});
 			});
 			$("#img2").click(function(){
 				$.get("http://localhost:5000/bread",function(data){
-					console.log(data);
+					processImg(data);
 				});
 			});
 			$("#img3").click(function(){
 				$.get("http://localhost:5000/apple",function(data){
-					console.log(data);
+					processImg(data);
 				});
 			});
+			$("#img4").click(function(){
+				console.log("clicked")
+				$.get("http://localhost:5000/brownegg",function(data){
+					processImg(data);
+				});
+			});
+			$("#img5").click(function(){
+				$.get("http://localhost:5000/cabbage",function(data){
+					processImg(data);
+				});
+			});
+			$("#img6").click(function(){
+				$.get("http://localhost:5000/italy",function(data){
+					processImg(data);
+				});
+			});
+			$("#img7").click(function(){
+				$.get("http://localhost:5000/whiteegg",function(data){
+					processImg(data);
+				});
+			});
+			$("#img8").click(function(){
+				$.get("http://localhost:5000/veg",function(data){
+					processImg(data);
+				});
+			});
+			$("#img9").click(function(){
+				$.get("http://localhost:5000/steak",function(data){
+					processImg(data);
+				});
+			});
+
+
 
 		});
 
@@ -326,6 +343,16 @@
 							<img style="flex:0.3;  height:90px;" src="../../../img/bread.jpg" id="img2"/>
 							<img style="flex:0.3;  height:90px;" src="../../../img/apple.jpeg" id="img3"/>
 						</div>
+						<div id="row1" style="display:flex; flex-direction:row;">
+							<img style="flex:0.3;  height:90px;" src="../../../img/brown_egg.png" id="img4"/>
+							<img style="flex:0.3;  height:90px;" src="../../../img/cabbage.png" id="img5"/>
+							<img style="flex:0.3;  height:90px;" src="../../../img/italy.png" id="img6"/>
+						</div>
+						<div id="row1" style="display:flex; flex-direction:row;">
+							<img style="flex:0.3;  height:90px;" src="../../../img/white_egg.png" id="img7"/>
+							<img style="flex:0.3;  height:90px;" src="../../../img/veg.png" id="img8"/>
+							<img style="flex:0.3;  height:90px;" src="../../../img/steak.png" id="img9"/>
+						</div>
 						<div id="suggestedNames">
 								<div style="display:flex;flex-direction:row; width:100%;">
 									<button id="firstSug" style="flex:0.5; font-size: 9px; margin:1px;"></button>
@@ -336,10 +363,7 @@
 									<button id="fourthSug" style="flex:0.5; font-size: 9px; margin:1px;"></button>
 								</div>
 
-								<div style="display:flex;flex-direction:row;">
-									<button id="fifthSug" style="flex:0.5; font-size: 9px; margin:1px;"></button>
-									<button id="sixthSug" style="flex:0.5; font-size: 9px; margin:1px;"></button>
-								</div>
+								
 						</div>
 
 						<p id="suggestedNames"></p>
